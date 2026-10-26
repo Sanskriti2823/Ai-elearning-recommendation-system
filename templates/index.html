@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Discover courses{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow">YOUR PERSONAL LEARNING COMPANION</span>
+    <h1>Find the next skill<br><em>worth learning.</em></h1>
+    <p>Discover learning resources matched to your interests, current level and goals. Build a learning path that works for you.</p>
+    <div class="hero-actions">
+      <a class="button primary" href="{{ url_for('register') }}">Create free account →</a>
+      <a class="button secondary" href="{{ url_for('course_catalog') }}">Explore courses</a>
+    </div>
+    <div class="hero-stats"><div><strong>12+</strong><span>Sample courses</span></div><div><strong>4</strong><span>Subject areas</span></div><div><strong>100%</strong><span>Student-focused</span></div></div>
+  </div>
+  <div class="hero-art">
+    <div class="art-orbit"></div><div class="art-card main-art"><span class="art-symbol">✦</span><span class="small-label">YOUR LEARNING PATH</span><h3>Skills for your future</h3><div class="skill-line"><span>Python foundations</span><b>✓</b></div><div class="skill-line"><span>Build a project</span><b>2</b></div><div class="skill-line"><span>Grow your portfolio</span><b>3</b></div><div class="progress"><span></span></div><small>One step at a time</small></div>
+    <div class="floating-tag tag-top">✧ Personalized</div><div class="floating-tag tag-bottom">↗ Keep growing</div>
+  </div>
+</section>
+<section class="section-heading"><div><span class="eyebrow">START EXPLORING</span><h2>Popular learning picks</h2></div><a class="text-link" href="{{ url_for('course_catalog') }}">View all courses →</a></section>
+<div class="course-grid">
+{% for course in courses %}
+  <article class="course-card"><div class="course-icon icon-{{ loop.index % 4 }}">{{ ['⌘','⌁','◈','✳'][loop.index0 % 4] }}</div><div class="course-meta"><span>{{ course.subject }}</span><span>{{ course.level }}</span></div><h3>{{ course.title }}</h3><p>{{ course.description }}</p><div class="course-bottom"><span>◷ {{ course.duration }}</span><a href="{{ course.url }}" target="_blank" rel="noopener noreferrer">Explore ↗</a></div></article>
+{% endfor %}
+</div>
+<section class="callout"><div><span class="eyebrow">A BETTER WAY TO LEARN</span><h2>Learning should fit you.</h2><p>Set your interests and goals, then get a ranked list of relevant courses.</p></div><a class="button light" href="{{ url_for('register') }}">Build my learning path →</a></section>
+{% endblock %}
